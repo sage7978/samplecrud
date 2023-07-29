@@ -44,7 +44,7 @@ class ProductController {
         return ResponseEntity(createdProduct, HttpStatus.OK)
     }
 
-    @PutMapping("/products/{productId}")
+    @PutMapping("/{productId}")
     fun updateProduct(@PathVariable(value = "productId") productId: Long, @RequestBody product: Product): ResponseEntity<Product>? {
         return productService.findById(productId).map { p: Product ->
             p.name = product.name
