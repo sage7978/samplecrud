@@ -25,7 +25,7 @@ class JwtService {
         return claimsResolver(claims)
     }
 
-    private fun generateToken(
+    fun generateToken(
         userDetails: UserDetails
     ): String {
         return generateToken(mutableMapOf<String, Any>(), userDetails)
@@ -45,7 +45,7 @@ class JwtService {
             .compact()
     }
 
-    private fun isTokenValid(
+    fun isTokenValid(
         token: String,
         userDetails: UserDetails
     ): Boolean {

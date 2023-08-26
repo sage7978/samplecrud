@@ -11,14 +11,14 @@ data class User (
 
     @Id
     @GeneratedValue
-    val id: Int,
-    var firstName: String,
-    var lastName: String,
-    var email: String,
-    var pass: String,
-    var mobileNumber: String,
+    val id: Long?,
+    var firstName: String?,
+    var lastName: String?,
+    var email: String?,
+    var pass: String?,
+    var mobileNumber: String?,
     @Enumerated(EnumType.STRING)
-    var role: Role
+    var role: Role?
 ): UserDetails {
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         val authorities: MutableCollection<GrantedAuthority> = mutableListOf()
@@ -27,11 +27,11 @@ data class User (
         return authorities
     }
 
-    override fun getPassword(): String {
+    override fun getPassword(): String? {
         return pass
     }
 
-    override fun getUsername(): String {
+    override fun getUsername(): String? {
         return email
     }
 
@@ -51,4 +51,12 @@ data class User (
         return true
     }
 
+    constructor(
+        firstName: String?,
+        lastName: String?,
+        email: String?,
+        pass: String?,
+        mobileNumber: String?,
+        role: Role?
+    ): this(null, firstName, lastName, email, pass, mobileNumber, role)
 }
